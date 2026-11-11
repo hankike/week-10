@@ -26,6 +26,7 @@ def get_coffee_data():
     # Grabbing our categories
     df_coffee.dropna(subset=['100g_USD', 'rating'])
 
+    # Using apply
     df_coffee['roast_cat'] = df_coffee['roast'].apply(roast_category)
 
     return df_coffee
@@ -46,7 +47,7 @@ def train_linear_regression(df_coffee):
 
 
 def train_decision_tree(df_coffee):
-    X = df_coffee[['100g_USD']]
+    X = df_coffee[['100g_USD', 'roast_cat']]
     y = df_coffee['rating']
 
     model = DecisionTreeRegressor()
